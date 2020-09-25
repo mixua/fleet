@@ -32,7 +32,7 @@ import (
 	"github.com/kolide/kit/version"
 	"github.com/pkg/errors"
 	"github.com/prometheus/client_golang/prometheus"
-	//"github.com/prometheus/client_golang/prometheus/promhttp"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/spf13/cobra"
 	"google.golang.org/grpc"
 )
@@ -260,7 +260,7 @@ the way that the Fleet server works.
 			rootMux.Handle("/healthz", prometheus.InstrumentHandler("healthz", health.Handler(httpLogger, healthCheckers)))
 			rootMux.Handle("/version", prometheus.InstrumentHandler("version", version.Handler()))
 			rootMux.Handle("/assets/", prometheus.InstrumentHandler("static_assets", service.ServeStaticAssets("/assets/")))
-			//rootMux.Handle("/metrics", prometheus.InstrumentHandler("metrics", promhttp.Handler()))
+			rootMux.Handle("/metrics", prometheus.InstrumentHandler("version", version.Handler()))
 			rootMux.Handle("/api/", apiHandler)
 			rootMux.Handle("/", frontendHandler)
 
