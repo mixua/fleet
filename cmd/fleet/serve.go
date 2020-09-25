@@ -266,6 +266,7 @@ the way that the Fleet server works.
 
             // ugly hack
 			tmp := prometheus.InstrumentHandler("metric", promhttp.Handler())
+			logger.Log(tmp)
 
 			if path, ok := os.LookupEnv("KOLIDE_TEST_PAGE_PATH"); ok {
 				// test that we can load this
