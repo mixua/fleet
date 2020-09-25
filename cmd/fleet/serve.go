@@ -253,9 +253,6 @@ the way that the Fleet server works.
 
 			}
 
-            // ugly hack
-			tmp := launcher.New("/metric", prometheus.InstrumentHandler("metric", promhttp.Handler()))
-
 			// Instantiate a gRPC service to handle launcher requests.
 			launcher := launcher.New(svc, logger, grpc.NewServer(), healthCheckers)
 
@@ -266,6 +263,9 @@ the way that the Fleet server works.
 			rootMux.Handle("/metrics", prometheus.InstrumentHandler("metrics", version.Handler()))
 			rootMux.Handle("/api/", apiHandler)
 			rootMux.Handle("/", frontendHandler)
+
+            // ugly hack
+			tmp := prometheus.InstrumentHandler("metric", promhttp.Handler())
 
 			if path, ok := os.LookupEnv("KOLIDE_TEST_PAGE_PATH"); ok {
 				// test that we can load this
