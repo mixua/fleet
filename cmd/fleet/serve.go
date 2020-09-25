@@ -32,7 +32,7 @@ import (
 	"github.com/kolide/kit/version"
 	"github.com/pkg/errors"
 	"github.com/prometheus/client_golang/prometheus"
-	//"github.com/prometheus/client_golang/prometheus/promhttp"
+	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/spf13/cobra"
 	"google.golang.org/grpc"
 )
@@ -252,6 +252,9 @@ the way that the Fleet server works.
 				}
 
 			}
+
+            // ugly hack
+			tmp := launcher.New("/metric", prometheus.InstrumentHandler("metric", promhttp.Handler()))
 
 			// Instantiate a gRPC service to handle launcher requests.
 			launcher := launcher.New(svc, logger, grpc.NewServer(), healthCheckers)
