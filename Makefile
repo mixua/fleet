@@ -124,7 +124,7 @@ lint-scss:
 lint-go:
 	go vet ./...
 
-lint: lint-go lint-js lint-scss lint-ts
+lint: lint-js lint-scss lint-ts
 
 test-go:
 	go test -tags full ./...
