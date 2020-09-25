@@ -21,8 +21,9 @@ jobs:
           key: go-mod-cache-v1-{{ checksum "go.sum" }}
           paths:
             - /go/pkg/mod
+      - run: apt update
+      - run: apt install nodejs npm -y
       - run: make generate-go
-      #- run: make lint-go
       - run: MYSQL_TEST=1 MYSQL_PORT_3306_TCP_ADDR=127.0.0.1 REDIS_TEST=1 # make test-go
       - run: make build
 
