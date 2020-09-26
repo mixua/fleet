@@ -22,10 +22,9 @@ jobs:
           paths:
             - /go/pkg/mod
       - run: apt update
-      - run: apt install nodejs -y
-      - run: npm install --save-dev webpack
-      - run: npm install --save-dev webpack-cli
-      - run: apt install yarn -y
+      - run: apt install nodejs yarn -y
+      - run: npm install --global webpack
+      - run: npm install --global webpack-cli
       - run: make deps-js
       - run: make generate-go
       - run: MYSQL_TEST=1 MYSQL_PORT_3306_TCP_ADDR=127.0.0.1 REDIS_TEST=1 # make test-go
