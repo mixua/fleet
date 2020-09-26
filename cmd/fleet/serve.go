@@ -29,10 +29,10 @@ import (
 	"github.com/kolide/fleet/server/pubsub"
 	"github.com/kolide/fleet/server/service"
 	"github.com/kolide/fleet/server/sso"
-	"github.com/kolide/kit/version"
+	//"github.com/kolide/kit/version"
 	"github.com/pkg/errors"
 	"github.com/prometheus/client_golang/prometheus"
-	"github.com/prometheus/client_golang/prometheus/promhttp"
+	//"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/spf13/cobra"
 	"google.golang.org/grpc"
 )
@@ -258,15 +258,11 @@ the way that the Fleet server works.
 
 			rootMux := http.NewServeMux()
 			rootMux.Handle("/healthz", prometheus.InstrumentHandler("healthz", health.Handler(httpLogger, healthCheckers)))
-			rootMux.Handle("/version", prometheus.InstrumentHandler("version", version.Handler()))
+			//rootMux.Handle("/version", prometheus.InstrumentHandler("version", version.Handler()))
 			rootMux.Handle("/assets/", prometheus.InstrumentHandler("static_assets", service.ServeStaticAssets("/assets/")))
 			//rootMux.Handle("/metrics", prometheus.InstrumentHandler("metrics", version.Handler()))
 			rootMux.Handle("/api/", apiHandler)
 			rootMux.Handle("/", frontendHandler)
-
-            // ugly hack
-			tmp := prometheus.InstrumentHandler("metric", promhttp.Handler())
-			logger.Log(tmp)
 
 			if path, ok := os.LookupEnv("KOLIDE_TEST_PAGE_PATH"); ok {
 				// test that we can load this
