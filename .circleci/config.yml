@@ -25,7 +25,7 @@ jobs:
       - run: apt install nodejs npm yarn -y
       - run: npm install --global webpack
       - run: npm install --global webpack-cli
-      - run: make deps-js
+      - run: npm install
       - run: make generate-go
       - run: MYSQL_TEST=1 MYSQL_PORT_3306_TCP_ADDR=127.0.0.1 REDIS_TEST=1 # make test-go
       - run: make build
