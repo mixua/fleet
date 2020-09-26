@@ -107,10 +107,10 @@ endif
 build: fleet fleetctl
 
 fleet: .prefix .pre-build .pre-fleet generate
-	CGO_ENABLED=0 go build -o build/${OUTPUT} -ldflags ${KIT_VERSION} ./cmd/fleet
+	CGO_ENABLED=0 GOOS=linux go build -tags full -o build/${OUTPUT} -ldflags ${KIT_VERSION} ./cmd/fleet
 
 fleetctl: .prefix .pre-build .pre-fleetctl generate
-	CGO_ENABLED=0 go build -o build/fleetctl -ldflags ${KIT_VERSION} ./cmd/fleetctl
+	CGO_ENABLED=0 GOOS=linux go build -tags full -o build/fleetctl -ldflags ${KIT_VERSION} ./cmd/fleetctl
 
 lint-js:
 	yarn run eslint frontend --ext .js,.jsx
