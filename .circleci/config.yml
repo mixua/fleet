@@ -23,6 +23,7 @@ jobs:
             - /go/pkg/mod
       - run: apt update
       - run: apt install nodejs -y
+      - run: apt install npm
       - run: npm install --global webpack
       - run: npm install --global webpack-cli
       - run: apt install yarn -y
