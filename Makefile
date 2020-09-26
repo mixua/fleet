@@ -106,10 +106,10 @@ endif
 
 build: fleet fleetctl
 
-fleet: .prefix .pre-build .pre-fleet
+fleet: .prefix .pre-build .pre-fleet generate
 	CGO_ENABLED=0 go build -o build/${OUTPUT} -ldflags ${KIT_VERSION} ./cmd/fleet
 
-fleetctl: .prefix .pre-build .pre-fleetctl
+fleetctl: .prefix .pre-build .pre-fleetctl generate
 	CGO_ENABLED=0 go build -o build/fleetctl -ldflags ${KIT_VERSION} ./cmd/fleetctl
 
 lint-js:
