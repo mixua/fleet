@@ -23,6 +23,7 @@ jobs:
             - /go/pkg/mod
       - run: apt update
       - run: apt install nodejs yarn -y
+      - run: apt install yarn -y
       - run: npm install --save-dev webpack
       - run: npm install --save-dev webpack-cli
       - run: make deps-js
