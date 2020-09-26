@@ -22,7 +22,7 @@ jobs:
           paths:
             - /go/pkg/mod
       - run: apt update
-      - run: apt install nodejs npm -y
+      - run: apt install nodejs yarn -y
       - run: npm install --save-dev webpack
       - run: npm install --save-dev webpack-cli
       - run: make deps-js
